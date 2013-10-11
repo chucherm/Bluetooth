@@ -15,7 +15,7 @@
         android:text="@string/dispositivosd" />
 
     <ListView
-        android:id="@+id/listadispositivos"
+        android:id="@+id/android:list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/textView1"

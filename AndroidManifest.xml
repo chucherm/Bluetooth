@@ -8,9 +8,13 @@
         android:minSdkVersion="15"
         android:targetSdkVersion="18" />
 
-    <uses-feature android:name="android.hardware.bluetooth" android:required="true" />
+    <uses-feature
+        android:name="android.hardware.bluetooth"
+        android:required="true" />
+
     <uses-permission android:name="android.permission.BLUETOOTH" />
     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
 
     <application
         android:allowBackup="true"
@@ -33,6 +37,11 @@
         <activity
             android:name="com.example.bluetooth.MostrarDatos"
             android:label="@string/title_activity_mostrar_datos" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
         </activity>
     </application>
 

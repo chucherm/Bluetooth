@@ -1,14 +1,8 @@
 package com.example.bluetooth;
 
-import java.util.ArrayList;
-
 import android.app.Activity;
 import android.bluetooth.BluetoothAdapter;
-import android.bluetooth.BluetoothDevice;
-import android.content.BroadcastReceiver;
-import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
@@ -24,8 +18,6 @@ public class Principal extends Activity implements OnClickListener {
 	private Button bucardispositivo, obtenerinformacion, salir;
 	private BluetoothAdapter mBluetoothAdapter;
 	private Switch mySwitch;
-
-	private ArrayList<String> mArrayAdapter = new ArrayList<String>();
 
 	private static final int ENCENDER = 1;
 
@@ -50,9 +42,6 @@ public class Principal extends Activity implements OnClickListener {
 		salir.setOnClickListener(this);
 
 		encenderBluetooth();
-
-		registerReceiver(ActionFoundReceiver, new IntentFilter(
-				BluetoothDevice.ACTION_FOUND));
 	}
 
 	@Override
@@ -103,14 +92,14 @@ public class Principal extends Activity implements OnClickListener {
 	public void onClick(View v) {
 
 		if (bucardispositivo.isPressed()) {
-
-			mBluetoothAdapter.startDiscovery();
-
+			
 			Intent inte = new Intent(this, Dispositivos.class);
-			inte.putExtra("dispositivos", mArrayAdapter);
 			startActivity(inte);
 
 		} else if (obtenerinformacion.isPressed()) {
+			
+			Intent inte = new Intent(this, MostrarDatos.class);
+			startActivity(inte);
 
 		} else if (salir.isPressed()) {
 
@@ -119,19 +108,5 @@ public class Principal extends Activity implements OnClickListener {
 		}
 	}
 
-	private final BroadcastReceiver ActionFoundReceiver = new BroadcastReceiver() {
-
-		@Override
-		public void onReceive(Context context, Intent intent) {
-			// TODO Auto-generated method stub
-			String action = intent.getAction();
-			if (BluetoothDevice.ACTION_FOUND.equals(action)) {
-				BluetoothDevice device = intent
-						.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
-				mArrayAdapter
-						.add(device.getName() + "\n" + device.getAddress());
-			}
-		}
-	};
 
 }
